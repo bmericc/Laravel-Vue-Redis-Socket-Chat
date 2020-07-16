@@ -20,9 +20,9 @@
 
         data() {
             return {
-                activeChannel: this.channels[0].id,
+                activeChannel: this.channels[0].channel_id,
                 messages: [],
-                username: 'username_' + Math.random().toString(36).substring(7),
+                username: document.getElementById("chat_name").value,
                 participants: [],
             };
         },
@@ -46,7 +46,7 @@
         created() {
             this.fetchMessages();
 
-            this.socket = io(`http://localhost:3001?username=${this.username}`);
+            this.socket = io(`https://app.fittut.com:3002?username=${this.username}`);
 
             for (let channel of this.channels) {
                 this.socket.on(`${channel.name}:App\\Events\\MessageSent`, data => {
@@ -61,7 +61,7 @@
                 this.participants = data.participants;
 
                 this.messages.push({
-                    message: `${data.username} has joined the chat.`,
+                    message: `${data.username} sohbete katıldı.`,
                     author_username: 'system',
                 });
             });
@@ -71,7 +71,7 @@
                 this.participants = data.participants;
 
                 this.messages.push({
-                    message: `${data.username} has left the chat.`,
+                    message: `${data.username} sohbetten ayrıldı.`,
                     author_username: 'system',
                 });
             });

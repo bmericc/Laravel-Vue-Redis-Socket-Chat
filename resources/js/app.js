@@ -5,6 +5,7 @@
  */
 
 require('./bootstrap');
+global.$ = require('jquery/dist/jquery');
 
 // All the Vue component imports will go here
 Vue.component('vue-chat', require('./components/VueChat.vue'));

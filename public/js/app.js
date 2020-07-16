@@ -22289,7 +22289,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            activeChannel: this.channels[0].id,
+            activeChannel: this.channels[0].channel_id,
             messages: [],
             username: 'username_' + Math.random().toString(36).substring(7),
             participants: []
@@ -22321,7 +22321,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         this.fetchMessages();
 
-        this.socket = io('http://localhost:3001?username=' + this.username);
+        this.socket = io('https://app.fittut.com:3002?username=' + this.username);
 
         var _iteratorNormalCompletion = true;
         var _didIteratorError = false;
@@ -22556,13 +22556,13 @@ var render = function() {
     { staticClass: "column is-2" },
     _vm._l(_vm.channels, function(channel) {
       return _c("p", {
-        key: channel.id,
+        key: channel.channel_id,
         staticClass: "channel",
-        class: { active: channel.id == _vm.activeChannel },
+        class: { active: channel.channel_id == _vm.activeChannel },
         domProps: { textContent: _vm._s(channel.name) },
         on: {
           click: function($event) {
-            _vm.setChannel(channel.id)
+            _vm.setChannel(channel.channel_id)
           }
         }
       })
